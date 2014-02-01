@@ -7,3 +7,6 @@ state7 = GPIO.input(7)
 GPIO.output(7, True)
 time.sleep(5)
 GPIO.output(7, False)
+
+GPIO.cleanup()
+

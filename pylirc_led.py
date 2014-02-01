@@ -96,3 +96,5 @@ if(pylirc.init("pylirc", "./conf", blocking)):
    pylirc.exit()
 
    
+GPIO.cleanup()
+

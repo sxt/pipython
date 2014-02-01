@@ -31,3 +31,5 @@ root.putChild("form", FormPage())
 factory = Site(root)
 reactor.listenTCP(8880, factory)
 reactor.run()
+GPIO.cleanup()
+
