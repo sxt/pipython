@@ -8,6 +8,6 @@ option = sys.argv[1]
 if option == "1":
    print "Turning on pin 1"
 else:
-   print "Turning on pin 10"
+   print "Not turning on a pin"
 
 
