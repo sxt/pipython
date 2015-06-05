@@ -3,6 +3,13 @@ import RPi.GPIO as GPIO
 import time
 import urllib2
 import json
+import sys
+
+if len(sys.argv) != 2:
+   print 'Usage: ', sys.argv[0], ' Server-IP-Address'
+   sys.exit()
+
+ip = sys.argv[1]
 
 GPIO.setmode(GPIO.BOARD)
 plantStatePin = 7
@@ -15,16 +22,22 @@ else:
 
 def edge(channel):
   #urlBase = "http://127.0.0.1:8880/api"
-  urlBase = "http://192.168.1.13:8081/"
+  urlBase = "http://" + ip + ":8081/"
   newState = GPIO.input(7)
+  eventid = 0
   if newState == 1:
+    # OK
     print("Pin 7 ON")
+    eventid=5
   else:
+    # Thirsty
     print("Pin 7 OFF")
+    eventid=4
 
-  url = urlBase + "?state=" + str(newState)
+  url = urlBase + "?eventid=" + str(eventid)
   print "Trying API: " + url
   result = json.load(urllib2.urlopen(url))
+  print "API Result" + json.dumps(result)
 
 GPIO.add_event_detect(plantStatePin, GPIO.BOTH, callback=edge)
 
