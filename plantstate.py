@@ -6,7 +6,7 @@ import json
 import sys
 
 if len(sys.argv) != 2:
-   print 'Usage: ', sys.argv[0], ' Server-IP-Address'
+   print 'Usage: ', sys.argv[0], ' Server-Address'
    sys.exit()
 
 ip = sys.argv[1]
@@ -22,7 +22,7 @@ else:
 
 def edge(channel):
   #urlBase = "http://127.0.0.1:8880/api"
-  urlBase = "http://" + ip + ":8081/"
+  urlBase = ip
   newState = GPIO.input(7)
   eventid = 0
   if newState == 1:
